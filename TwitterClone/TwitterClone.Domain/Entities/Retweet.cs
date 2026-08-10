@@ -22,7 +22,7 @@ namespace TwitterClone.Domain.Entities
 
 
         public Guid UserId { get; private set;  }
-        public DateTime CreatedAt { get; private set; } 
+        
 
         public string Content
         {
@@ -36,6 +36,19 @@ namespace TwitterClone.Domain.Entities
             Content = content;
         }
 
+
+
+        public Guid UpdateBy { get { return _updatedBy; } private set { _updatedBy = value; } }
+
+        public void CreatedAt()
+        {
+            _createdAt = DateTime.UtcNow;
+        }
+
+        public void UpdateAt()
+        {
+            _updatedAt = DateTime.UtcNow;
+        }
 
     }
 }

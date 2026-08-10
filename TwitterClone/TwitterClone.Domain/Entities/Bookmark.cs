@@ -14,9 +14,31 @@ namespace TwitterClone.Domain.Entities
 
 
 
-        public Bookmark() { 
+        public Bookmark( string  content ) { 
         
-            
+            _bookmarkId = Guid.NewGuid();
+            _bookmarkContent = content;
+            _createdBy = Guid.NewGuid();
         }
+
+
+        public Guid UserId { get { return _userId; } private set { _userId = value; }  }
+
+
+        public void SetUserId( Guid userId)
+        {
+            UserId = userId;
+        }
+
+        public Guid UpdateBy {  get { return _updatedBy; } private set { _updatedBy = value; } }
+
+        public void CreatedAt() {
+            _createdAt = DateTime.UtcNow;
+        }
+
+        public void UpdateAt() {
+            _updatedAt = DateTime.UtcNow;
+        }
+
     }
 }

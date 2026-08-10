@@ -37,5 +37,18 @@ namespace TwitterClone.Domain.Entities
         }
 
 
+        public Guid UpdateBy { get { return _updatedBy; } private set { _updatedBy = value; } }
+
+        public void CreatedAt()
+        {
+            _createdAt = DateTime.UtcNow;
+        }
+
+        public void UpdateAt()
+        {
+            _updatedAt = DateTime.UtcNow;
+        }
+
+
     }
 }

@@ -26,7 +26,17 @@ namespace TwitterClone.Domain.Entities
 
         public Guid UserId { get;  set; }
         public Guid TweetId { get;private set; }
-        public DateTime UpdateAt {  get; private set; }
+        public Guid UpdateBy { get { return _updatedBy; } private set { _updatedBy = value; } }
+
+        public void CreatedAt()
+        {
+            _createdAt = DateTime.UtcNow;
+        }
+
+        public void UpdateAt()
+        {
+            _updatedAt = DateTime.UtcNow;
+        }
 
     }
 }

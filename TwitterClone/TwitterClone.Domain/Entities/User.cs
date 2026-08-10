@@ -13,13 +13,17 @@ namespace TwitterClone.Domain.Entities
         private string _lastName;
         private string _userName;
         private string _email;
-        private DateTime _createdBy;
+
+        private DateTime _createdAt;
+        private DateTime _updatedAt;
+        private Guid _createdBy;
+        private Guid _updatedBy;
 
 
         public User() 
         {
             _id = Guid.NewGuid();
-            _createdBy = DateTime.UtcNow;
+            _createdBy = Guid.NewGuid();
         }
 
         public Guid Id { get { return _id; } }
@@ -35,6 +39,22 @@ namespace TwitterClone.Domain.Entities
             LastName = lastName;
             UserName = userName;
         }
+
+
+
+        public Guid UpdateBy { get { return _updatedBy; } private set { _updatedBy = value; } }
+
+        public void CreatedAt()
+        {
+            _createdAt = DateTime.UtcNow;
+        }
+
+        public void UpdateAt()
+        {
+            _updatedAt = DateTime.UtcNow;
+        }
+
+
 
 
     }

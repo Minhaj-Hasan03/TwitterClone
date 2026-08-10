@@ -10,6 +10,11 @@ namespace TwitterClone.Domain.Entities
         private DateTime? _modifyedAt;
         private string _content;
 
+        private DateTime _createdAt;
+        private DateTime _updatedAt;
+        private Guid _createdBy;
+        private Guid _updatedBy;
+
 
 
         public Guid TweetId
@@ -34,6 +39,20 @@ namespace TwitterClone.Domain.Entities
         public void Content( string content)
         {
             _content = content;
+        }
+
+
+
+        public Guid UpdateBy { get { return _updatedBy; } private set { _updatedBy = value; } }
+
+        public void CreatedAt()
+        {
+            _createdAt = DateTime.UtcNow;
+        }
+
+        public void UpdateAt()
+        {
+            _updatedAt = DateTime.UtcNow;
         }
 
     }
