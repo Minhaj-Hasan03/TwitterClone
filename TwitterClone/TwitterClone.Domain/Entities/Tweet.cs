@@ -12,7 +12,7 @@ namespace TwitterClone.Domain.Entities
 
 
 
-        public Guid Id
+        public Guid TweetId
         {
             get { return _tweetId; }
         }
@@ -22,17 +22,19 @@ namespace TwitterClone.Domain.Entities
             get { return _authorId; }
         }
 
-        public DateTime TweetedAt
+        
+
+        public Tweet()
         {
-            get { return _tweetedAt; }
-            set
-            {
-                _tweetedAt = DateTime.UtcNow;
-            }
+            _tweetId = Guid.NewGuid();
+            _tweetedAt = DateTime.UtcNow;
         }
 
 
-        public  Tweet()
+        public void Content( string content)
+        {
+            _content = content;
+        }
 
     }
 }
