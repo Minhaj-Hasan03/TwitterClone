@@ -1,9 +1,13 @@
 ﻿
 
+using System.Security.Cryptography;
+
 namespace TwitterClone.Domain.Entities
 {
     public class Like
     {
+        private Guid _id;
+
         private Guid _likeId;
         private Guid _tweetId;
         private Guid _userId;
@@ -16,7 +20,10 @@ namespace TwitterClone.Domain.Entities
 
 
         public Like()
+
         {
+            _id = Guid.NewGuid();
+
             _likeId = Guid.NewGuid();
             _createdBy = Guid.NewGuid();
             _createdAt = DateTime.UtcNow; 

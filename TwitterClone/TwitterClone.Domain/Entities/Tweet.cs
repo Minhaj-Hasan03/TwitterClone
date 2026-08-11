@@ -1,9 +1,12 @@
 ﻿
 
+using System.Security.Cryptography;
+
 namespace TwitterClone.Domain.Entities
 {
     public class Tweet
     {
+        private Guid _id;
         private Guid _tweetId;
         private Guid _authorId;
         private DateTime _tweetedAt;
@@ -31,6 +34,8 @@ namespace TwitterClone.Domain.Entities
 
         public Tweet()
         {
+            _id = Guid.NewGuid();
+
             _tweetId = Guid.NewGuid();
             _tweetedAt = DateTime.UtcNow;
         }

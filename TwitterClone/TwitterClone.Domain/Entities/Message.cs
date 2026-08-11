@@ -1,9 +1,13 @@
 ﻿
 
+using System.Security.Cryptography;
+
 namespace TwitterClone.Domain.Entities
 {
     public class Message
     {
+        private Guid _id;
+
         private Guid _messageId;
         private string _messageContent;
         private Guid _messageSentId;
@@ -17,6 +21,8 @@ namespace TwitterClone.Domain.Entities
 
         public Message()
         {
+            _id = Guid.NewGuid();
+
             _messageId = Guid.NewGuid();
             _createdBy = Guid.NewGuid();
         }

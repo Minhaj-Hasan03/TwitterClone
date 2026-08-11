@@ -1,9 +1,12 @@
 ﻿
 
+using System.Security.Cryptography;
+
 namespace TwitterClone.Domain.Entities
 {
     public class Follow
     {
+        private Guid _id;
 
         private Guid _followedUserId;
         private Guid _userId;
@@ -16,6 +19,8 @@ namespace TwitterClone.Domain.Entities
 
         public Follow()
         {
+            _id = Guid.NewGuid();
+
             _followedUserId = Guid.NewGuid();
             _createdBy = Guid.NewGuid();
         }

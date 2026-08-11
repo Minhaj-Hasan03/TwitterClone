@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -8,6 +9,7 @@ namespace TwitterClone.Domain.Entities
 {
     internal class Notification
     {
+        private Guid _id;
         private Guid _notificationId;
         private string _notificationType;
 
@@ -22,6 +24,8 @@ namespace TwitterClone.Domain.Entities
 
         public Notification(string Type )
         {
+            _id = Guid.NewGuid();
+
             _notificationType = Type;
             _notificationId = Guid.NewGuid();
             _createdBy = Guid.NewGuid();

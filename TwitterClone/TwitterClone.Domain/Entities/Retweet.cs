@@ -1,9 +1,12 @@
 ﻿
 
+using System.Security.Cryptography;
+
 namespace TwitterClone.Domain.Entities
 {
     public class Retweet
     {
+        private Guid _id;
         private Guid _reTweetId;
         private Guid _userId;
         private DateTime _createdAt;
@@ -16,6 +19,8 @@ namespace TwitterClone.Domain.Entities
 
         public Retweet()
         {
+            _id = Guid.NewGuid();
+
             _reTweetId = Guid.NewGuid();
             _createdBy = Guid.NewGuid();
         }

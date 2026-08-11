@@ -4,6 +4,9 @@ namespace TwitterClone.Domain.Entities
 {
     public class Bookmark
     {
+        
+
+        private Guid _id;
         private Guid _bookmarkId;
         private string _bookmarkContent;
         private Guid _userId;
@@ -16,6 +19,7 @@ namespace TwitterClone.Domain.Entities
 
         public Bookmark( string  content ) { 
         
+            _id= Guid.NewGuid();
             _bookmarkId = Guid.NewGuid();
             _bookmarkContent = content;
             _createdBy = Guid.NewGuid();
