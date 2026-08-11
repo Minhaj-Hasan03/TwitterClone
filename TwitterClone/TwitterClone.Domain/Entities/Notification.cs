@@ -7,48 +7,48 @@ using System.Threading.Tasks;
 
 namespace TwitterClone.Domain.Entities
 {
-    internal class Notification
+    public class Notification:BaseEnitiies
     {
-        private Guid _id;
+       
         private Guid _notificationId;
-        private string _notificationType;
+        private string? _notificationType;
 
         private Guid _userId;
-        private DateTime _createdAt;
-        private DateTime _updatedAt;
-        private Guid _createdBy;
-        private Guid _updatedBy;
+        private string? _message;
+       
 
 
 
 
-        public Notification(string Type )
+        public Notification(string notificationType , Guid notificationId , Guid userId ):base(Guid.NewGuid())
         {
-            _id = Guid.NewGuid();
-
-            _notificationType = Type;
-            _notificationId = Guid.NewGuid();
-            _createdBy = Guid.NewGuid();
+            UserId = userId;
+            NotificationId = notificationId;
+            NotificationType = notificationType;
         }
 
 
-        public Guid UserId { get; set; }
+        public Guid UserId { get { return _userId; } private set { _userId = value; }  }
 
-        public void SetUserId( Guid userId ) { UserId = userId; }
+        public Guid NotificationId { get { return _notificationId; } private  set { _notificationId = value; } }
+        public string NotificationType { get { return _notificationType; }private set { _notificationType = value; }
 
 
-        public Guid UpdateBy { get { return _updatedBy; } private set { _updatedBy = value; } }
-
-        public void CreatedAt()
+        protected string MessageType
         {
-            _createdAt = DateTime.UtcNow;
+            get { return _message; }
+            set { _message = value; }
         }
 
-        public void UpdateAt()
+         public override string Description()
         {
-            _updatedAt = DateTime.UtcNow;
+            var baseDescription = base.Description();
+            return $"{baseDescription}, UserId: {UserId}, NotificationId: {NotificationId}, NotificationType: {NotificationType}, MessageType: {MessageType}";
         }
 
+
+
+        
 
     }
 }

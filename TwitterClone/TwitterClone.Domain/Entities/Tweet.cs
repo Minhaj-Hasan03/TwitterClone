@@ -1,64 +1,51 @@
 ﻿
 
-using System.Security.Cryptography;
+
 
 namespace TwitterClone.Domain.Entities
 {
-    public class Tweet
+    public class Tweet : BaseEnitiies
     {
-        private Guid _id;
+
         private Guid _tweetId;
         private Guid _authorId;
-        private DateTime _tweetedAt;
-        private DateTime? _modifyedAt;
         private string _content;
-
-        private DateTime _createdAt;
-        private DateTime _updatedAt;
-        private Guid _createdBy;
-        private Guid _updatedBy;
+        private Guid _userId;
 
 
 
+
+
+
+
+        public Tweet(Guid tweetId, Guid authorId, Guid userId, string content) : base(Guid.NewGuid())
+        {
+            UserId = userId;
+            AuthorId = authorId;
+            TweetId = tweetId;
+            Content = content;
+        }
+
+
+        public Guid UserId { get { return _userId; } private set { _userId = value; } }
+
+        public Guid AuthorId { get { return _authorId; } private set { _authorId = value; } }
+        public string Content { get { return _content; } private set { _content = value; } }
         public Guid TweetId
         {
             get { return _tweetId; }
+            private set { _tweetId = value; }
+
+
+
+
         }
 
-        public Guid AuthorId
+
+        public override string Description()
         {
-            get { return _authorId; }
+            var baseDescription = base.Description();
+            return $"{baseDescription}, UserId: {UserId}, TweetID: {TweetId}, AuthorId: {AuthorId}, Content: {Content} ";
         }
-
-        
-
-        public Tweet()
-        {
-            _id = Guid.NewGuid();
-
-            _tweetId = Guid.NewGuid();
-            _tweetedAt = DateTime.UtcNow;
-        }
-
-
-        public void Content( string content)
-        {
-            _content = content;
-        }
-
-
-
-        public Guid UpdateBy { get { return _updatedBy; } private set { _updatedBy = value; } }
-
-        public void CreatedAt()
-        {
-            _createdAt = DateTime.UtcNow;
-        }
-
-        public void UpdateAt()
-        {
-            _updatedAt = DateTime.UtcNow;
-        }
-
     }
 }
