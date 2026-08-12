@@ -4,56 +4,36 @@ using System.Security.Cryptography;
 
 namespace TwitterClone.Domain.Entities
 {
-    public class Retweet
+    public class Retweet:BaseEnitiies
     {
-        private Guid _id;
+       
         private Guid _reTweetId;
         private Guid _userId;
-        private DateTime _createdAt;
-        private DateTime _updatedAt;
-        private Guid _createdBy;
-        private Guid _updatedBy;
+        
         private string _content;
 
 
 
-        public Retweet()
+        public Retweet(Guid reTweetId , string content):base(Guid.NewGuid())
         {
-            _id = Guid.NewGuid();
-
-            _reTweetId = Guid.NewGuid();
-            _createdBy = Guid.NewGuid();
-        }
-
-
-        public Guid UserId { get; private set;  }
-        
-
-        public string Content
-        {
-            get { return _content; }
-            set { _content = value; }
-        }
-
-
-        public void SetContent( string content)
-        {
+            ReTweetId = reTweetId;
             Content = content;
         }
 
 
+        public Guid UserId { get {return _userId; } private set { _userId = value; }  }
 
-        public Guid UpdateBy { get { return _updatedBy; } private set { _updatedBy = value; } }
 
-        public void CreatedAt()
+        public Guid ReTweetId { get { return _reTweetId; } private set { _reTweetId = value; } }
+        public string Content { get { return _content ; } private set { _content = value; } }
+
+
+        public override string Description()
         {
-            _createdAt = DateTime.UtcNow;
+            var baseDescription = base.Description();
+            return $"{baseDescription}, UserId: {UserId}, ReTweetId: {ReTweetId}, Content: {Content}";
         }
 
-        public void UpdateAt()
-        {
-            _updatedAt = DateTime.UtcNow;
-        }
 
     }
 }

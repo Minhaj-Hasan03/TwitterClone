@@ -4,46 +4,42 @@ using System.Security.Cryptography;
 
 namespace TwitterClone.Domain.Entities
 {
-    public class Like
+    public class Like:BaseEnitiies
     {
-        private Guid _id;
+        
 
         private Guid _likeId;
         private Guid _tweetId;
         private Guid _userId;
-        private DateTime _createdAt;
-        private DateTime _updatedAt;
-        private Guid _createdBy;
-        private Guid _updatedBy;
+        
         
 
 
 
-        public Like()
+        public Like( Guid likeId, Guid userId, Guid tweetId): base(Guid.NewGuid())
 
         {
-            _id = Guid.NewGuid();
-
-            _likeId = Guid.NewGuid();
-            _createdBy = Guid.NewGuid();
-            _createdAt = DateTime.UtcNow; 
+          UserId = userId;
+            LikeId = likeId;
+            TweetId = tweetId;
 
         }
 
 
-        public Guid UserId { get;  set; }
-        public Guid TweetId { get;private set; }
-        public Guid UpdateBy { get { return _updatedBy; } private set { _updatedBy = value; } }
+        public Guid UserId { get { return _userId; } private set { _userId = value; } }
 
-        public void CreatedAt()
+        public Guid LikeId { get { return _likeId; } private set { _likeId = value; } }
+
+        public Guid TweetId { get { return _tweetId; } private set { _tweetId = value; } }
+
+
+        public override string Description()
         {
-            _createdAt = DateTime.UtcNow;
+            var baseDescription = base.Description();
+            return $"{baseDescription}, UserId: {UserId}, TweetId: {TweetId}, LikeId: {LikeId}  ";
         }
 
-        public void UpdateAt()
-        {
-            _updatedAt = DateTime.UtcNow;
-        }
+
 
     }
 }

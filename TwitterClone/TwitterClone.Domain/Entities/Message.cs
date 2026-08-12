@@ -4,57 +4,40 @@ using System.Security.Cryptography;
 
 namespace TwitterClone.Domain.Entities
 {
-    public class Message
+    public class Message :BaseEnitiies
     {
-        private Guid _id;
+       
 
         private Guid _messageId;
         private string _messageContent;
         private Guid _messageSentId;
         private Guid _userId;
 
-        private DateTime _createdAt;
-        private DateTime _updatedAt;
-        private Guid _createdBy;
-        private Guid _updatedBy;
+        
 
 
-        public Message()
+        public Message(string messageContent , Guid messageId , Guid messageSentId, Guid userId ):base(Guid.NewGuid())
         {
-            _id = Guid.NewGuid();
-
-            _messageId = Guid.NewGuid();
-            _createdBy = Guid.NewGuid();
+            MessageContent = messageContent;
+            MessageId = messageId;
+            UserId = userId;
+            MessageSentId = messageSentId;
         }
 
 
 
         public Guid MessageSentId { get { return _messageId; } private set { _messageId = value; } }
-        public Guid UserId { get; private set; }
-        public void  MessageContent(string value ) { 
-            _messageContent = value; 
-        } 
+        public string MessageContent { get { return _messageContent;  } private set { _messageContent = value; }   }
 
-        public void Set( Guid userId, Guid messageSentId)
+        public Guid MessageId { get { return _messageId; } private set { _messageId = value; }  }
+        public Guid UserId { get { return _userId; } private set { _userId = value; }  }
+
+
+        public override string Description()
         {
-            MessageSentId = messageSentId;
-            UserId = userId;
-
+            var baseDescription = base.Description();
+            return $"{baseDescription}, UserId: {UserId}, MessageId: {MessageId}, MessageContent: {MessageContent}, MessageSentId: {MessageSentId}";
         }
-
-
-        public Guid UpdateBy { get { return _updatedBy; } private set { _updatedBy = value; } }
-
-        public void CreatedAt()
-        {
-            _createdAt = DateTime.UtcNow;
-        }
-
-        public void UpdateAt()
-        {
-            _updatedAt = DateTime.UtcNow;
-        }
-
 
     }
 }

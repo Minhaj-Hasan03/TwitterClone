@@ -6,53 +6,39 @@ using System.Threading.Tasks;
 
 namespace TwitterClone.Domain.Entities
 {
-    public class User
+    public class User:BaseEnitiies
     {
-        private Guid _id;
+        private Guid _userId;
+        
         private string _firstName;
         private string _lastName;
         private string _userName;
         private string _email;
 
-        private DateTime _createdAt;
-        private DateTime _updatedAt;
-        private Guid _createdBy;
-        private Guid _updatedBy;
+       
 
-
-        public User() 
-        {
-            _id = Guid.NewGuid();
-            _createdBy = Guid.NewGuid();
-        }
-
-        public Guid Id { get { return _id; } }
-
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Email { get; set; }
-        public string UserName { get; set; }
-
-        public void SetAll( string firstname, string lastName, string userName)
+        public User(string firstname, string lastName, string userName, string email ) :base(Guid.NewGuid())
         {
             FirstName = firstname; 
             LastName = lastName;
             UserName = userName;
+            Email = email;
         }
 
+        
+
+        public Guid UserId { get { return _userId;  } private set { _userId = value; } }
+
+        public string FirstName { get { return _firstName;  } private set { _firstName = value; }  }
+        public string LastName { get { return _lastName; } private set { _lastName = value; } }
+        public string Email { get { return _email; } private set { _email = value; } }
+        public string UserName { get { return _userName; } private set { _userName = value; } }
 
 
-        public Guid UpdateBy { get { return _updatedBy; } private set { _updatedBy = value; } }
 
-        public void CreatedAt()
-        {
-            _createdAt = DateTime.UtcNow;
-        }
 
-        public void UpdateAt()
-        {
-            _updatedAt = DateTime.UtcNow;
-        }
+
+       
 
 
 

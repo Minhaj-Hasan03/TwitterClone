@@ -4,45 +4,36 @@ using System.Security.Cryptography;
 
 namespace TwitterClone.Domain.Entities
 {
-    public class Follow
+    public class Follow : BaseEnitiies
     {
-        private Guid _id;
+       
+
 
         private Guid _followedUserId;
+        private Guid _followerUserId;
         private Guid _userId;
-        private DateTime _createdAt;
-        private DateTime _updatedAt;
-        private Guid _createdBy;
-        private Guid _updatedBy;
-
-
-
-        public Follow()
-        {
-            _id = Guid.NewGuid();
-
-            _followedUserId = Guid.NewGuid();
-            _createdBy = Guid.NewGuid();
-        }
-
-
-        public Guid UserId { get; private set; }
-
-        public void SetUserId(Guid userId)
+       
+        public Follow(Guid followedUserId, Guid userId, Guid followerUserId ) : base(Guid.NewGuid())
         {
             UserId = userId;
+            FollowedUserId = followedUserId;
+            _followerUserId = followerUserId;
         }
 
-        public Guid UpdateBy { get { return _updatedBy; } private set { _updatedBy = value; } }
 
-        public void CreatedAt()
-        {
-            _createdAt = DateTime.UtcNow;
-        }
 
-        public void UpdateAt()
+
+        public Guid UserId { get { return _userId; } private set { _userId = value; } }
+
+        public Guid FollowedUserId { get { return _followedUserId; } private set { _followedUserId = value; } }
+
+        public Guid FollowerUserId { get {return  _followerUserId; } private set { _followerUserId = value; } }
+
+
+        public override string Description()
         {
-            _updatedAt = DateTime.UtcNow;
+            var baseDescription = base.Description();
+            return $"{baseDescription}, UserId: {UserId}, FollowedUserId: {FollowedUserId}, FollowerUserId: {FollowerUserId}";
         }
 
 
