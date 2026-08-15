@@ -23,7 +23,7 @@ namespace TwitterClone.Domain.Entities
 
         public virtual string Description()
         {
-            return $"BaseEntity: Id: {Id}, CreatedAt: {CreatedAt}, ModifiedAt: {ModifiedAt}, CreatedBy: {CreatedBy}, ModifiedBy: {ModifiedBy}";
+            return $"BaseEntity: Id: {Id}, CreatedAt: {CreatedAt}, ModifiedAt: {UpdatedAt}, CreatedBy: {CreatedBy}, ModifiedBy: {UpdatedBy}";
         }
 
 
