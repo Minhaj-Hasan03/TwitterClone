@@ -24,5 +24,11 @@ namespace TwitterClone.Domain.Entities
 
         }
 
+
+        public override string GetMessage()
+        {
+            return $"The get friend request from {FriendRequestUserId}";
+        }
+
     }
 }

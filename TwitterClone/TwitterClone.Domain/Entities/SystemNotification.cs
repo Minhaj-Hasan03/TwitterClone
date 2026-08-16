@@ -4,10 +4,12 @@ namespace TwitterClone.Domain.Entities
 {
     public sealed class SystemNotification:Notification
     {
-        public SystemNotification():base("System", Guid.NewGuid(), Guid.NewGuid() )
+        public SystemNotification(Guid systemNotificationId):base("System", Guid.NewGuid(), Guid.NewGuid() )
         {
-
+            SystemNotificationId = systemNotificationId;
         }
+
+        public Guid SystemNotificationId { get; private set; }
 
         public void Message(string message)
         {
@@ -17,6 +19,12 @@ namespace TwitterClone.Domain.Entities
         public override string Description()
         {
             return base.Description();
+        }
+
+
+        public override string GetMessage()
+        {
+            return $"A system notification from {SystemNotificationId}";
         }
 
     }

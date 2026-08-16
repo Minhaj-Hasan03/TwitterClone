@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace TwitterClone.Domain.Entities
 {
-    public class Notification:BaseEnitiies
+    public abstract class Notification:BaseEnitiies
     {
        
         private Guid _notificationId;
@@ -31,7 +31,7 @@ namespace TwitterClone.Domain.Entities
         public Guid UserId { get { return _userId; } private set { _userId = value; }  }
 
         public Guid NotificationId { get { return _notificationId; } private  set { _notificationId = value; } }
-        public string NotificationType { get { return _notificationType; }private set { _notificationType = value; }
+        public string NotificationType { get { return _notificationType; } private set { _notificationType = value; } }
 
 
         protected string MessageType
@@ -45,6 +45,10 @@ namespace TwitterClone.Domain.Entities
             var baseDescription = base.Description();
             return $"{baseDescription}, UserId: {UserId}, NotificationId: {NotificationId}, NotificationType: {NotificationType}, MessageType: {MessageType}";
         }
+
+
+        public abstract string GetMessage();
+       
 
 
 
