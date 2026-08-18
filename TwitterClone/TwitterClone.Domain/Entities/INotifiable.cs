@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TwitterClone.Domain.Entities
 {
-    public interface INoitifiabel
+    public interface INotifiable
     {
         void AddNotification(Guid notificationId);
     }

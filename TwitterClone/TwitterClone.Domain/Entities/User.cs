@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TwitterClone.Domain.Entities
 {
-    public class User:BaseEnitiies, IFollowable, INoitifiabel
+    public class User:BaseEnitiies, IFollowable, INotifiable
     {
         private Guid _userId;
         
