@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TwitterClone.Domain.Entities
 {
-    public class User:BaseEnitiies
+    public class User:BaseEnitiies, IFollowable, INoitifiabel
     {
         private Guid _userId;
         
@@ -37,10 +37,34 @@ namespace TwitterClone.Domain.Entities
 
 
 
-
+        private List<Guid> _followers = new List<Guid>();
+        private List<Guid> _recievingNotification = new List<Guid>();
        
 
 
+        public void Follow(Guid userId)
+        {
+            if( !_followers.Contains(userId))
+            {
+                _followers.Add(userId);
+            }
+        }
+
+        public void UnFollow( Guid userId)
+        {
+            if( _followers.Contains(userId))
+            {
+                _followers.Remove(userId);
+            }
+        }
+
+        public void AddNotification(Guid notificationId)
+        {
+            if (!_recievingNotification.Contains(notificationId))
+            {
+                _recievingNotification.Add(notificationId);
+            }
+        }
 
 
     }

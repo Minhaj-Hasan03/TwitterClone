@@ -4,7 +4,7 @@
 
 namespace TwitterClone.Domain.Entities
 {
-    public class Tweet : BaseEnitiies
+    public class Tweet : BaseEnitiies, ILikeabe
     {
 
         private Guid _tweetId;
@@ -13,7 +13,7 @@ namespace TwitterClone.Domain.Entities
         private Guid _userId;
 
 
-
+        public static int ContentLengthMaximum = 280;
 
 
 
@@ -24,6 +24,11 @@ namespace TwitterClone.Domain.Entities
             AuthorId = authorId;
             TweetId = tweetId;
             Content = content;
+        }
+
+        public Tweet( string content) : base(Guid.NewGuid())
+        {
+            _content = content;
         }
 
 
@@ -46,6 +51,16 @@ namespace TwitterClone.Domain.Entities
         {
             var baseDescription = base.Description();
             return $"{baseDescription}, UserId: {UserId}, TweetID: {TweetId}, AuthorId: {AuthorId}, Content: {Content} ";
+        }
+
+
+        public bool CanLike()
+        {
+            if( string.IsNullOrWhiteSpace(Content))
+            {
+                return false;
+            }
+            return true;
         }
     }
 }
