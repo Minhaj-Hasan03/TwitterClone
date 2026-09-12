@@ -7,7 +7,7 @@ namespace TwitterClone.Domain.Entities
 
         public MentionNotification(Guid mentionId) : base("Mention", Guid.NewGuid(), Guid.NewGuid())
         {
-            MentionId = mentionId; 
+             
         }
 
 

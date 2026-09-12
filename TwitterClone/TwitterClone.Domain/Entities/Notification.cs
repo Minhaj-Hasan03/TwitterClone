@@ -15,16 +15,17 @@ namespace TwitterClone.Domain.Entities
 
         private Guid _userId;
         private string? _message;
-       
+        private bool _isRead;
+
+
 
 
 
 
         public Notification(string notificationType , Guid notificationId , Guid userId ):base(Guid.NewGuid())
         {
-            UserId = userId;
-            NotificationId = notificationId;
-            NotificationType = notificationType;
+            
+            _notificationType = notificationType;
         }
 
 
@@ -40,7 +41,19 @@ namespace TwitterClone.Domain.Entities
             set { _message = value; }
         }
 
-         public override string Description()
+
+        public bool IsRead
+        {
+            get { return _isRead; }
+            set { _isRead = value; }
+        }
+
+        public string GetNotificationInfo()
+        {
+            return $"UserId: {_userId}, NotificationType: {_notificationType}";
+        }
+
+        public override string Description()
         {
             var baseDescription = base.Description();
             return $"{baseDescription}, UserId: {UserId}, NotificationId: {NotificationId}, NotificationType: {NotificationType}, MessageType: {MessageType}";
