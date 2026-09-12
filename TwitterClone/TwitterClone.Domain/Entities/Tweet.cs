@@ -32,10 +32,10 @@ namespace TwitterClone.Domain.Entities
         }
 
 
-        public Guid UserId { get { return _userId; } private set { _userId = value; } }
+        public Guid UserId { get { return _userId; }  set { _userId = value; } }
 
-        public Guid AuthorId { get { return _authorId; } private set { _authorId = value; } }
-        public string Content { get { return _content; } private set { _content = value; } }
+        public Guid AuthorId { get { return _authorId; }  set { _authorId = value; } }
+        public string Content { get { return _content; }  set { _content = value; } }
         public Guid TweetId
         {
             get { return _tweetId; }
