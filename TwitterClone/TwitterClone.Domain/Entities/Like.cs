@@ -19,9 +19,7 @@ namespace TwitterClone.Domain.Entities
         public Like( Guid likeId, Guid userId, Guid tweetId): base(Guid.NewGuid())
 
         {
-          UserId = userId;
-            LikeId = likeId;
-            TweetId = tweetId;
+          
 
         }
 

@@ -6,7 +6,7 @@ namespace TwitterClone.Domain.Entities
             
         public FrientRequestNotification(Guid frientRequestId ) :base("FrientRequest", Guid.NewGuid(), Guid.NewGuid())
         { 
-            FriendRequestUserId = frientRequestId;
+            
         }
 
         public Guid FriendRequestUserId { get; private  set; }
