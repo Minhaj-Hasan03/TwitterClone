@@ -27,12 +27,12 @@ namespace TwitterClone.Domain.Entities
 
         
 
-        public Guid UserId { get { return _userId;  } private set { _userId = value; } }
+        public Guid UserId { get { return _userId;  }  set { _userId = value; } }
 
-        public string FirstName { get { return _firstName;  } private set { _firstName = value; }  }
-        public string LastName { get { return _lastName; } private set { _lastName = value; } }
-        public string Email { get { return _email; } private set { _email = value; } }
-        public string UserName { get { return _userName; } private set { _userName = value; } }
+        public string FirstName { get { return _firstName;  }  set { _firstName = value; }  }
+        public string LastName { get { return _lastName; }  set { _lastName = value; } }
+        public string Email { get { return _email; }  set { _email = value; } }
+        public string UserName { get { return _userName; }  set { _userName = value; } }
 
 
 
