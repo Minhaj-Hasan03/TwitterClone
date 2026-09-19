@@ -1,4 +1,5 @@
 ﻿using System.Security.Cryptography.X509Certificates;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace TwitterClone.Api.Controllers
@@ -6,6 +7,7 @@ namespace TwitterClone.Api.Controllers
 
     [Route("api/[controller]")]
     [Controller]
+    [Authorize]
     public class MessagesController : ControllerBase
     {
         [HttpGet("{id}")]

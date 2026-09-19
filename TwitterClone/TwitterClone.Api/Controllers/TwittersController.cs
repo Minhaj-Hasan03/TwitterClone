@@ -7,6 +7,10 @@ namespace TwitterClone.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+
+
+
+
     [Authorize]
     public class TwittersController : ControllerBase //for acessing appsetting.json we need the controller 
     {

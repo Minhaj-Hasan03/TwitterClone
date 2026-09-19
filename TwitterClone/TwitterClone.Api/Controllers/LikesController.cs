@@ -7,5 +7,12 @@ namespace TwitterClone.Api.Controllers
     [ApiController]
     public class LikesController : ControllerBase
     {
+
+        // /api/likes/id/like
+        [HttpPut( "{id}/like")]
+        public IActionResult LikeByUserId([FromRoute] Guid userId)
+        {
+            return Ok();
+        }
     }
 }
