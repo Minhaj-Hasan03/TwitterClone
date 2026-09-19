@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TwitterClone.Domain.Entities;
 
@@ -6,18 +7,20 @@ namespace TwitterClone.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UserController : ControllerBase
+    [Authorize]
+    public class UsersController : ControllerBase
     {
-        public IConfiguration _configuration;
-        public UserController( IConfiguration configuration ) {
+        public readonly IConfiguration _configuration;
+        public UsersController( IConfiguration configuration ) {
 
 
             _configuration = configuration;
         }
 
 
-
+        // /api/users 
         [HttpPost]
+        [AllowAnonymous]
         public IActionResult CreateUser()
         {
 
@@ -55,6 +58,24 @@ namespace TwitterClone.Api.Controllers
             };
 
             return Ok(user);
+        }
+
+
+
+        //  /api/users/id/follow
+        [HttpPost("{id}/follow")]
+        public IActionResult Follow([FromRoute] Guid userId )
+        {
+            return Ok("the users is followed");
+        }
+
+
+        // /api/users/id/unfollow
+        [HttpPost("{id}/unfollow")]
+        
+        public IActionResult UnFollow([FromRoute] Guid userId)
+        {
+            return Ok("the users is unfollowed");
         }
     }
 }

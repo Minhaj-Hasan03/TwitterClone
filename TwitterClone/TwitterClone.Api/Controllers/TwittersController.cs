@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TwitterClone.Domain.Entities;
 
@@ -6,10 +7,11 @@ namespace TwitterClone.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class TwitterController : ControllerBase //for acessing appsetting.json we need the controller 
+    [Authorize]
+    public class TwittersController : ControllerBase //for acessing appsetting.json we need the controller 
     {
         private readonly IConfiguration _configuration;
-        public TwitterController( IConfiguration configuration ) 
+        public TwittersController( IConfiguration configuration ) 
         {
             _configuration = configuration;
 
@@ -42,5 +44,22 @@ namespace TwitterClone.Api.Controllers
             };
             return Ok(new{ tweets, maxLength} );
         }
+
+
+        // /api/tweets/id/like
+        [HttpPost("{id}/like")]
+        public IActionResult Like([FromRoute] Guid userId  )
+        {
+            return BadRequest();
+        }
+
+        // /api/tweets/id/unlike
+        [HttpPost("{id}/unlike")]
+        public IActionResult UnLike([FromRoute] Guid userId)
+        {
+            return Forbid();
+        }
+
+
     }
 }
