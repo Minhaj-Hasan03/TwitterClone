@@ -12,7 +12,7 @@ namespace Twitter.Test
             {
                  new LikeNotification(Guid.NewGuid()) ,
                 new CommentNotification(Guid.NewGuid()) ,
-                new FrientRequestNotification(Guid.NewGuid()) ,
+                new FriendRequestNotification(Guid.NewGuid()) ,
                 new MentionNotification(Guid.NewGuid()) ,
                 new SystemNotification(Guid.NewGuid()) ,
             };
