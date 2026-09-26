@@ -11,7 +11,7 @@ namespace TwitterClone.Api.Controllers
 
 
 
-    [Authorize]
+    
     public class TwittersController : ControllerBase //for acessing appsetting.json we need the controller 
     {
         private readonly IConfiguration _configuration;

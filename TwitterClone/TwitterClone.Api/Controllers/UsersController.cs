@@ -13,72 +13,82 @@ namespace TwitterClone.Api.Controllers
     [Authorize]
     public class UsersController : ControllerBase
     {
-        public readonly IConfiguration _configuration;
-        public UsersController( IConfiguration configuration ) {
+        public UsersController() { }
 
 
-            _configuration = configuration;
+        // /api/users
+        [HttpGet]
+        public IActionResult GetUsers()
+        {
+            return Ok(new List<object>
+            {
+                new
+                {
+                    UserId = Guid.NewGuid(),
+                    UserName = "user1",
+                },
+                new
+                {
+                    UserId = Guid.NewGuid(),
+                    UserName = "user2",
+                },
+            });
         }
 
-
-        // /api/users 
+        // /api/users
         [HttpPost]
         [AllowAnonymous]
         public IActionResult CreateUser()
         {
-
-            var user = new List<object>
+            return Ok(new
             {
-                new 
-                {
-                    UserId = Guid.NewGuid(),
-                    FirstName = "Minhaj",
-                    LastName = "Hasan",
-                    Email = "hasan0@gamil.com",
-                    UserName = "Minhaj_Hasan_2003"
-                },
-
-
-                new
-                {
-                    UserId = Guid.NewGuid(),
-                    FirstName = "Mahadin",
-                    LastName = "Hasan",
-                    Email = "mahadin@gamil.com",
-                    UserName = "mahadin_0505"
-                },
-                
-
-
-                new
-                {
-                    UserId = Guid.NewGuid(),
-                    FirstName = "Sabbir",
-                    LastName = "Islam",
-                    Email = "sabbirtechno@gamil.com",
-                    UserName = "sabbirfero2009@gmail.com"
-                }
-            };
-
-            return Ok(user);
+                UserId = Guid.NewGuid(),
+                UserName = "newuser",
+            });
         }
 
 
-
-        //  /api/users/id/follow
-        [HttpPost("{id}/follow")]
-        public IActionResult Follow([FromRoute] Guid userId )
+        // /api/users/{id}
+        [HttpGet("{id}")]
+        public IActionResult GetUserById([FromRoute] Guid id)
         {
-            return Ok("the users is followed");
+            return Ok(new
+            {
+                UserId = id,
+                UserName = "user" + id.ToString(),
+            });
         }
 
 
-        // /api/users/id/unfollow
-        [HttpPost("{id}/unfollow")]
-        
-        public IActionResult UnFollow([FromRoute] Guid userId)
+        // PUT /api/users/{id}
+        [HttpPut("{id}")]
+        public IActionResult UpdateUser([FromRoute] Guid id)
         {
-            return Ok("the users is unfollowed");
+            return Ok(new
+            {
+                UserId = id,
+                UserName = "updateduser" + id.ToString(),
+            });
+        }
+
+
+        // PATCH /api/users/{id}/phoneNumber
+        [HttpPatch("{id}/phoneNumber")]
+        public IActionResult UpdateUserPhoneNumber([FromRoute] Guid id, [FromBody] string phoneNumber)
+        {
+            return Ok("hello");
+
+        }
+
+        // DELETE /api/users/{id}
+        [HttpDelete("{id}")]
+        public IActionResult DeleteUser([FromRoute] Guid id)
+        {
+            return Ok(new
+            {
+                UserId = id,
+                Message = "User deleted successfully.",
+            });
         }
     }
 }
