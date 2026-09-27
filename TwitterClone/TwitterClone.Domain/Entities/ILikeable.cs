@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace TwitterClone.Domain.Entities
 {
-    public  interface ILikeabe
+    public  interface ILikeable
     {
-        bool CanLike();
+        bool CanBeLiked();
     }
 }

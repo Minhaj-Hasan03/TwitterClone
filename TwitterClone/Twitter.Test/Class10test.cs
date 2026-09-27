@@ -13,7 +13,7 @@ namespace Twitter.Test
         {
             Tweet likeableTweet = new Tweet("This is another tweet!");
 
-            Console.WriteLine(likeableTweet.CanLike());
+            Console.WriteLine(likeableTweet.CanBeLiked());
 
             
         }

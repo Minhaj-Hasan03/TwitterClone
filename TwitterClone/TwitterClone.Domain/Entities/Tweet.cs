@@ -4,59 +4,58 @@
 
 namespace TwitterClone.Domain.Entities
 {
-    public class Tweet : BaseEnitiies, ILikeabe
+    public class Tweet : BaseEnitiies, ILikeable
     {
 
-        private Guid _tweetId;
-        private Guid _authorId;
-        private string _content;
         private Guid _userId;
+        private string _content;
+
+        public static int MaxContentLength = 200;
 
 
-        public static int ContentLengthMaximum = 280;
-
-
-
-
-        public Tweet(Guid tweetId, Guid authorId, Guid userId, string content) : base(Guid.NewGuid())
-        {
-            UserId = userId;
-            AuthorId = authorId;
-            TweetId = tweetId;
-            Content = content;
-        }
-
-        public Tweet( string content) : base(Guid.NewGuid())
+        public Tweet(string content) : base(Guid.NewGuid())
         {
             _content = content;
         }
 
-
-        public Guid UserId { get { return _userId; }  set { _userId = value; } }
-
-        public Guid AuthorId { get { return _authorId; }  set { _authorId = value; } }
-        public string Content { get { return _content; }  set { _content = value; } }
-        public Guid TweetId
+        public Tweet(Guid userId, string content) : base(Guid.NewGuid())
         {
-            get { return _tweetId; }
-            private set { _tweetId = value; }
-
-
-
-
+            _userId = userId;
+            _content = content;
         }
 
+        public Guid UserId
+        {
+            get { return _userId; }
+            set { _userId = value; }
+        }
+
+        public string Content
+        {
+            get { return _content; }
+            set { _content = value; }
+        }
+
+        public void AddContent(string content)
+        {
+            _content = content;
+        }
+
+        public void AddContent(Guid userId, string content)
+        {
+            _userId = userId;
+            _content = content;
+        }
 
         public override string Description()
         {
-            var baseDescription = base.Description();
-            return $"{baseDescription}, UserId: {UserId}, TweetID: {TweetId}, AuthorId: {AuthorId}, Content: {Content} ";
+            var baseRecord = base.Description();
+            return $"{baseRecord}, UserId: {UserId}, Content: {Content}";
         }
 
-
-        public bool CanLike()
+        public bool CanBeLiked()
         {
-            if( string.IsNullOrWhiteSpace(Content))
+            if (string.IsNullOrWhiteSpace(Content))
             {
                 return false;
             }
