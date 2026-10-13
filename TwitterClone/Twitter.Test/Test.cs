@@ -14,7 +14,7 @@ namespace Twitter.Test
                 new CommentNotification(Guid.NewGuid()) ,
                 new FriendRequestNotification(Guid.NewGuid()) ,
                 new MentionNotification(Guid.NewGuid()) ,
-                new SystemNotification(Guid.NewGuid()) ,
+                new SystemNotification() ,
             };
 
 

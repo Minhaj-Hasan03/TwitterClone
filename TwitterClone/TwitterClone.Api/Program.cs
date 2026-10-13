@@ -19,6 +19,24 @@ builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddSingleton<ITweetRepository, TweetRepository>();
 builder.Services.AddScoped<ITweetService, TweetService>();
 
+builder.Services.AddSingleton<IBookmarkRepository, BookmarkRepository>();
+builder.Services.AddScoped<IBookmarkService, BookmarkService>();
+
+builder.Services.AddSingleton<IFollowRepository, FollowRepository>();
+builder.Services.AddScoped<IFollowService, FollowService>();
+
+builder.Services.AddSingleton<ILikeRepository, LikeRepository>();
+builder.Services.AddScoped<ILikeService, LikeService>();
+
+builder.Services.AddSingleton<IMessageRepository, MessageRepository>();
+builder.Services.AddScoped<IMessageService, MessageService>();
+
+builder.Services.AddSingleton<INotificationRepository, NotificationRepository>();
+builder.Services.AddScoped<INotificationService, NotificationService>();
+
+builder.Services.AddSingleton<IRetweetRepository, RetweetRepository>();
+builder.Services.AddScoped<IRetweetService, RetweetService>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

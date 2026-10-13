@@ -7,31 +7,30 @@ namespace TwitterClone.Domain.Entities
     public class Retweet:BaseEnitiies
     {
        
-        private Guid _reTweetId;
+        private Guid _tweetId;
         private Guid _userId;
         
-        private string _content;
+        private string _comment;
 
 
 
-        public Retweet(Guid reTweetId , string content):base(Guid.NewGuid())
+        public Retweet():base(Guid.NewGuid())
         {
-            ReTweetId = reTweetId;
-            Content = content;
+            
         }
 
 
-        public Guid UserId { get {return _userId; } private set { _userId = value; }  }
+        public Guid UserId { get {return _userId; }  set { _userId = value; }  }
 
 
-        public Guid ReTweetId { get { return _reTweetId; } private set { _reTweetId = value; } }
-        public string Content { get { return _content ; } private set { _content = value; } }
+        public Guid TweetId { get { return _tweetId; }  set { _tweetId = value; } }
+        public string Comment { get { return _comment ; }  set { _comment = value; } }
 
 
         public override string Description()
         {
             var baseDescription = base.Description();
-            return $"{baseDescription}, UserId: {UserId}, ReTweetId: {ReTweetId}, Content: {Content}";
+            return $"{baseDescription}, UserId: {UserId}, ReTweetId: {TweetId}, Content: {Comment}";
         }
 
 
