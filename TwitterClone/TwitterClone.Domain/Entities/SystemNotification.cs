@@ -4,9 +4,9 @@ namespace TwitterClone.Domain.Entities
 {
     public sealed class SystemNotification:Notification
     {
-        public SystemNotification(Guid systemNotificationId):base("System", Guid.NewGuid(), Guid.NewGuid() )
+        public SystemNotification():base("System", Guid.NewGuid(), Guid.NewGuid() )
         {
-            SystemNotificationId = systemNotificationId;
+           
         }
 
         public Guid SystemNotificationId { get; private set; }

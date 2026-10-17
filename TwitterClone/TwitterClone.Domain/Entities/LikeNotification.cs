@@ -11,7 +11,7 @@ namespace TwitterClone.Domain.Entities
             
         }
 
-        public Guid LikeByUserId { get; private set; }
+        public Guid LikeByUserId { get;  set; }
 
 
         public void Message(string message)
