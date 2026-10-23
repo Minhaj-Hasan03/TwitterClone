@@ -11,7 +11,7 @@ namespace TwitterClone.Domain.Entities
             CommentedUserId = commentedUserId;
         }
 
-        public Guid CommentedUserId { get; private set; }
+        public Guid CommentedUserId { get;  set; }
 
         public void Message(string message)
         {

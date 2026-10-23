@@ -7,11 +7,11 @@ namespace TwitterClone.Domain.Entities
 
         public MentionNotification(Guid mentionId) : base("Mention", Guid.NewGuid(), Guid.NewGuid())
         {
-             
+             MentionId = mentionId;
         }
 
 
-        public Guid MentionId { get; private set; }
+        public Guid MentionId { get;  set; }
 
         public void Message(string message)
         {

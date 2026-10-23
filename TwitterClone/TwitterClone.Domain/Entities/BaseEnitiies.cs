@@ -8,9 +8,9 @@ namespace TwitterClone.Domain.Entities
 
         public Guid Id { get; private set; }
         public DateTime CreatedAt { get; private set; }
-        public DateTime UpdatedAt { get; private set; }
+        public DateTime? ModifiedAt { get; private set; }
         public Guid CreatedBy { get; private set; }
-        public Guid UpdatedBy { get; private set; }
+        public Guid? ModifiedBy { get; private set; }
 
      
 
@@ -19,11 +19,15 @@ namespace TwitterClone.Domain.Entities
             CreatedAt = DateTime.UtcNow;
         }
 
+        public void MarkAsModified()
+        {
+            ModifiedAt = DateTime.UtcNow;
+        }
 
 
         public virtual string Description()
         {
-            return $"BaseEntity: Id: {Id}, CreatedAt: {CreatedAt}, ModifiedAt: {UpdatedAt}, CreatedBy: {CreatedBy}, ModifiedBy: {UpdatedBy}";
+            return $"BaseEntity: Id: {Id}, CreatedAt: {CreatedAt}, ModifiedAt: {ModifiedAt}, CreatedBy: {CreatedBy}, ModifiedBy: {ModifiedAt}";
         }
 
 

@@ -16,7 +16,7 @@ namespace TwitterClone.Domain.Entities
 
 
 
-        public Like( Guid likeId, Guid userId, Guid tweetId): base(Guid.NewGuid())
+        public Like( ): base(Guid.NewGuid())
 
         {
           
@@ -24,11 +24,11 @@ namespace TwitterClone.Domain.Entities
         }
 
 
-        public Guid UserId { get { return _userId; } private set { _userId = value; } }
+        public Guid UserId { get { return _userId; }  set { _userId = value; } }
 
-        public Guid LikeId { get { return _likeId; } private set { _likeId = value; } }
+        public Guid LikeId { get { return _likeId; }  set { _likeId = value; } }
 
-        public Guid TweetId { get { return _tweetId; } private set { _tweetId = value; } }
+        public Guid TweetId { get { return _tweetId; }  set { _tweetId = value; } }
 
 
         public override string Description()
