@@ -8,14 +8,13 @@ namespace TwitterClone.Api.Controllers
 {
 
     [Route("api/[controller]")]
-    [Controller]
+    [ApiController]
     [Authorize]
     public class MessagesController : ControllerBase
     {
         private readonly IMessageService _messageService;
 
-        public MessagesController(
-            IMessageService messageService)
+        public MessagesController( IMessageService messageService)
         {
             _messageService = messageService;
         }

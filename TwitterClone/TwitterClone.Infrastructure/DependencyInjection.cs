@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using TwitterClone.Application.Interfaces;
+using TwitterClone.Infrastructure.Authentication;
 using TwitterClone.Infrastructure.Repositories;
 
 namespace TwitterClone.Infrastructure
@@ -21,6 +22,8 @@ namespace TwitterClone.Infrastructure
             services.AddSingleton<IMessageRepository, MessageRepository>();
             services.AddSingleton<INotificationRepository, NotificationRepository>();
             services.AddSingleton<IRetweetRepository, RetweetRepository>();
+            services.AddSingleton<IPasswordHasher, PasswordHasher>();
+            services.AddSingleton<ITokenService, JwtTokenService>();
 
             return services;
         }
