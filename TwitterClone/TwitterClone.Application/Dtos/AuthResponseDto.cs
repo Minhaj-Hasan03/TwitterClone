@@ -11,7 +11,7 @@ namespace TwitterClone.Application.Dtos
 
         public required string AccessToken { get; set; }
 
-        public required DateOnly ExpiresAt { get; set; }
+        public required DateTime ExpiresAt { get; set; }
 
         public required UserDto UserDto { get; set; }
     }
