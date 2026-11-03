@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using TwitterClone.Application.Interfaces;
 using TwitterClone.Domain.Entities;
-using TwitterClone.Infrastructure.Presistence;
+using TwitterClone.Infrastructure.Persistence;
 
 namespace TwitterClone.Infrastructure.Repositories
 {

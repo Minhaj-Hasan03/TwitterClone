@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using TwitterClone.Domain.Entities;
 
-namespace TwitterClone.Infrastructure.Presistence
+namespace TwitterClone.Infrastructure.Persistence
 {
     public class TwitterCloneDbContext : DbContext
     {
@@ -22,6 +22,14 @@ namespace TwitterClone.Infrastructure.Presistence
         public DbSet<Like> Likes => Set<Like>();
         public DbSet<Message> Messages => Set<Message>();
         public DbSet<Notification> Notifications => Set<Notification>();
+        public DbSet<LikeNotification> LikeNotifications { get; set; }
+        public DbSet<CommentNotification> CommentNotifications { get; set; }
+        public DbSet<FriendRequestNotification> FriendRequestNotifications { get; set; }
+        public DbSet<MentionNotification> MentionNotifications { get; set; }
+        public DbSet<SystemNotification> SystemNotifications { get; set; }
+
+
+
         public DbSet<Retweet> Retweets => Set<Retweet>();
 
 

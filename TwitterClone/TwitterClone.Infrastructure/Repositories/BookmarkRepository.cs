@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TwitterClone.Application.Interfaces;
 using TwitterClone.Domain.Entities;
-using TwitterClone.Infrastructure.Presistence;
+using TwitterClone.Infrastructure.Persistence;
 
 namespace TwitterClone.Infrastructure.Repositories
 {

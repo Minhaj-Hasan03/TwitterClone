@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TwitterClone.Application.Interfaces;
 using TwitterClone.Domain.Entities;
-using TwitterClone.Infrastructure.Presistence;
+using TwitterClone.Infrastructure.Persistence;
 
 namespace TwitterClone.Infrastructure.Repositories
 {
@@ -29,7 +29,7 @@ namespace TwitterClone.Infrastructure.Repositories
 
         public Notification UpdateNotification(Notification notification)
         {
-           _context.Notifications.Update(notification);
+            _context.Notifications.Update(notification);
             _context.SaveChanges();
             return notification;
         }

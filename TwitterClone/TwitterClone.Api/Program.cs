@@ -2,12 +2,15 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using TwitterClone.Application;
 using TwitterClone.Application.Interfaces;
 using TwitterClone.Application.Services;
 using TwitterClone.Infrastructure;
 using TwitterClone.Infrastructure.Authentication;
+using TwitterClone.Infrastructure.Persistence;
+
 using TwitterClone.Infrastructure.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -62,6 +65,15 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+
+if (app.Configuration.GetValue<bool>("Database:ApplyMigrationsOnStartup"))
+{
+    using var scope = app.Services.CreateScope();
+    await scope.ServiceProvider.GetRequiredService<TwitterCloneDbContext>().Database.MigrateAsync();
+}
+
+
 
 app.UseHttpsRedirection();
 

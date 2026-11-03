@@ -24,8 +24,10 @@ namespace TwitterClone.Domain.Entities
 
         public Notification(string notificationType , Guid notificationId , Guid userId ):base(Guid.NewGuid())
         {
-            
+
             _notificationType = notificationType;
+            _notificationId = notificationId;
+            _userId = userId;
         }
 
 

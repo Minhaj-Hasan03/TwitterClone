@@ -9,7 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using TwitterClone.Application.Interfaces;
 
 using TwitterClone.Infrastructure.Authentication;
-using TwitterClone.Infrastructure.Presistence;
+using TwitterClone.Infrastructure.Persistence;
 using TwitterClone.Infrastructure.Repositories;
 
 namespace TwitterClone.Infrastructure
@@ -24,8 +24,11 @@ namespace TwitterClone.Infrastructure
             //switch to scoped when they are backed by real database 
 
             //objecct life time 1.singleton, 2.scoped, 3. transit
-            var connectionString = configuration.GetConnectionString("TwitterCloneDb")
-                ?? throw new InvalidOperationException("Connection string 'TwitterCloneDb' is missing ");
+            var connectionString = configuration.GetConnectionString("TwitterCloneDb");
+            if (string.IsNullOrWhiteSpace(connectionString))
+            {
+                throw new Exception("Database connection string is not found");
+            }
 
 
             services.AddDbContext<TwitterCloneDbContext>(options =>
