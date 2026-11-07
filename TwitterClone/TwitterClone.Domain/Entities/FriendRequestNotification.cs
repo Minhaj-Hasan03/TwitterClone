@@ -4,9 +4,9 @@ namespace TwitterClone.Domain.Entities
     public sealed class FriendRequestNotification : Notification
     {
             
-        public FriendRequestNotification(Guid requestedByUserId) :base("FrientRequest", Guid.NewGuid(), Guid.NewGuid())
+        public FriendRequestNotification(Guid friendRequestUserId) :base("FrientRequest", Guid.NewGuid(), Guid.NewGuid())
         {
-            FriendRequestUserId = requestedByUserId;
+            FriendRequestUserId = friendRequestUserId;
         }
 
         public Guid FriendRequestUserId { get;   set; }

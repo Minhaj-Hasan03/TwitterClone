@@ -19,7 +19,8 @@ namespace TwitterClone.Api.Controllers
         }
 
 
-        [HttpPost("/login")]
+        [HttpPost("login")]
+        [AllowAnonymous]
         public IActionResult Login([FromBody]LoginDto loginDto)
         {
             var authResponse = _authService.Login(loginDto);
