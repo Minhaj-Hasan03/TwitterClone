@@ -29,6 +29,12 @@ namespace TwitterClone.Infrastructure.Persistence
         public DbSet<SystemNotification> SystemNotifications { get; set; }
 
 
+        public DbSet<Role> Roles => Set<Role>();
+        public DbSet<Permission> Permissions => Set<Permission>();
+        public DbSet<UserRole> UserRoles => Set<UserRole>();
+        public DbSet<RolePermission> RolePermissions => Set<RolePermission>();
+
+
 
         public DbSet<Retweet> Retweets => Set<Retweet>();
 
