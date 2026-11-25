@@ -46,6 +46,10 @@ namespace TwitterClone.Infrastructure
             services.AddScoped<ITokenService, JwtTokenService>();
 
 
+            services.AddScoped<IRoleRepository, RoleRepository>();
+            services.AddScoped<IPermissionRepository, PermissionRepository>();
+
+
             return services;
         }
     }

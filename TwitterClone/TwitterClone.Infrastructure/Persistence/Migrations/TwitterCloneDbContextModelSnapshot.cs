@@ -236,6 +236,60 @@ namespace TwitterClone.Infrastructure.Persistence.Migrations
                     b.UseTphMappingStrategy();
                 });
 
+            modelBuilder.Entity("TwitterClone.Domain.Entities.Permission", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<Guid?>("ModifiedBy")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Name")
+                        .IsUnique();
+
+                    b.ToTable("Permissions");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("ed986696-6f4a-49a6-a4da-cd072c4a3020"),
+                            CreatedAt = new DateTime(2026, 11, 25, 15, 44, 35, 505, DateTimeKind.Utc).AddTicks(1454),
+                            CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Name = "users.read"
+                        },
+                        new
+                        {
+                            Id = new Guid("ab069366-28e0-485a-81ca-9c1bc439ec10"),
+                            CreatedAt = new DateTime(2026, 11, 25, 15, 44, 35, 505, DateTimeKind.Utc).AddTicks(1457),
+                            CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Name = "users.delete"
+                        },
+                        new
+                        {
+                            Id = new Guid("d2d58110-2690-460c-9f11-05633234ea37"),
+                            CreatedAt = new DateTime(2026, 11, 25, 15, 44, 35, 505, DateTimeKind.Utc).AddTicks(1459),
+                            CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Name = "roles.manage"
+                        });
+                });
+
             modelBuilder.Entity("TwitterClone.Domain.Entities.Retweet", b =>
                 {
                     b.Property<Guid>("Id")
@@ -273,6 +327,135 @@ namespace TwitterClone.Infrastructure.Persistence.Migrations
                         .IsUnique();
 
                     b.ToTable("Retweets");
+                });
+
+            modelBuilder.Entity("TwitterClone.Domain.Entities.Role", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<Guid?>("ModifiedBy")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Name")
+                        .IsUnique();
+
+                    b.ToTable("Roles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("b1ca7713-bc3c-4eb1-bf3b-d97cbcb6c745"),
+                            CreatedAt = new DateTime(2026, 11, 25, 15, 44, 35, 505, DateTimeKind.Utc).AddTicks(2998),
+                            CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Name = "Admin"
+                        },
+                        new
+                        {
+                            Id = new Guid("7a7513f6-60f0-4f86-bd59-c42c8146181e"),
+                            CreatedAt = new DateTime(2026, 11, 25, 15, 44, 35, 505, DateTimeKind.Utc).AddTicks(3002),
+                            CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Name = "Moderator"
+                        },
+                        new
+                        {
+                            Id = new Guid("35c51d71-265b-4d16-8bf2-0133c505769c"),
+                            CreatedAt = new DateTime(2026, 11, 25, 15, 44, 35, 505, DateTimeKind.Utc).AddTicks(3003),
+                            CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Name = "User"
+                        });
+                });
+
+            modelBuilder.Entity("TwitterClone.Domain.Entities.RolePermission", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<Guid?>("ModifiedBy")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("PermissionId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("RoleId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PermissionId");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("RolePermissions", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("712fe51f-db7e-4fe4-9d75-34c6cad6b368"),
+                            CreatedAt = new DateTime(2026, 11, 25, 15, 44, 35, 505, DateTimeKind.Utc).AddTicks(7954),
+                            CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
+                            PermissionId = new Guid("ed986696-6f4a-49a6-a4da-cd072c4a3020"),
+                            RoleId = new Guid("b1ca7713-bc3c-4eb1-bf3b-d97cbcb6c745")
+                        },
+                        new
+                        {
+                            Id = new Guid("8ad2930c-9e9e-4117-8c01-c0cccd1f9988"),
+                            CreatedAt = new DateTime(2026, 11, 25, 15, 44, 35, 505, DateTimeKind.Utc).AddTicks(7960),
+                            CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
+                            PermissionId = new Guid("ab069366-28e0-485a-81ca-9c1bc439ec10"),
+                            RoleId = new Guid("b1ca7713-bc3c-4eb1-bf3b-d97cbcb6c745")
+                        },
+                        new
+                        {
+                            Id = new Guid("55eb7f4a-156c-4de7-a9d4-39fdb6be6556"),
+                            CreatedAt = new DateTime(2026, 11, 25, 15, 44, 35, 505, DateTimeKind.Utc).AddTicks(7962),
+                            CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
+                            PermissionId = new Guid("d2d58110-2690-460c-9f11-05633234ea37"),
+                            RoleId = new Guid("b1ca7713-bc3c-4eb1-bf3b-d97cbcb6c745")
+                        },
+                        new
+                        {
+                            Id = new Guid("f4fbf05a-21ce-41fa-bece-6baaa1110152"),
+                            CreatedAt = new DateTime(2026, 11, 25, 15, 44, 35, 505, DateTimeKind.Utc).AddTicks(7964),
+                            CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
+                            PermissionId = new Guid("ed986696-6f4a-49a6-a4da-cd072c4a3020"),
+                            RoleId = new Guid("7a7513f6-60f0-4f86-bd59-c42c8146181e")
+                        },
+                        new
+                        {
+                            Id = new Guid("dea7efbd-0f1f-4204-b8bd-26480df4c967"),
+                            CreatedAt = new DateTime(2026, 11, 25, 15, 44, 35, 505, DateTimeKind.Utc).AddTicks(7974),
+                            CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
+                            PermissionId = new Guid("ab069366-28e0-485a-81ca-9c1bc439ec10"),
+                            RoleId = new Guid("7a7513f6-60f0-4f86-bd59-c42c8146181e")
+                        });
                 });
 
             modelBuilder.Entity("TwitterClone.Domain.Entities.Tweet", b =>
@@ -351,6 +534,24 @@ namespace TwitterClone.Infrastructure.Persistence.Migrations
                         .IsUnique();
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("TwitterClone.Domain.Entities.UserRole", b =>
+                {
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("RoleId")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("AssignedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("UserId", "RoleId");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("UserRoles", (string)null);
                 });
 
             modelBuilder.Entity("TwitterClone.Domain.Entities.CommentNotification", b =>
@@ -487,6 +688,25 @@ namespace TwitterClone.Infrastructure.Persistence.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("TwitterClone.Domain.Entities.RolePermission", b =>
+                {
+                    b.HasOne("TwitterClone.Domain.Entities.Permission", "Permission")
+                        .WithMany("RolePermissions")
+                        .HasForeignKey("PermissionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TwitterClone.Domain.Entities.Role", "Role")
+                        .WithMany("RolePermissions")
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Permission");
+
+                    b.Navigation("Role");
+                });
+
             modelBuilder.Entity("TwitterClone.Domain.Entities.Tweet", b =>
                 {
                     b.HasOne("TwitterClone.Domain.Entities.User", null)
@@ -494,6 +714,42 @@ namespace TwitterClone.Infrastructure.Persistence.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("TwitterClone.Domain.Entities.UserRole", b =>
+                {
+                    b.HasOne("TwitterClone.Domain.Entities.Role", "Role")
+                        .WithMany("UserRoles")
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TwitterClone.Domain.Entities.User", "User")
+                        .WithMany("UserRoles")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Role");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("TwitterClone.Domain.Entities.Permission", b =>
+                {
+                    b.Navigation("RolePermissions");
+                });
+
+            modelBuilder.Entity("TwitterClone.Domain.Entities.Role", b =>
+                {
+                    b.Navigation("RolePermissions");
+
+                    b.Navigation("UserRoles");
+                });
+
+            modelBuilder.Entity("TwitterClone.Domain.Entities.User", b =>
+                {
+                    b.Navigation("UserRoles");
                 });
 #pragma warning restore 612, 618
         }

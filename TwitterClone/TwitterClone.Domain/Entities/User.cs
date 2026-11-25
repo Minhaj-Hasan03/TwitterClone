@@ -21,6 +21,9 @@ namespace TwitterClone.Domain.Entities
         private string _passwordHash;
 
 
+        public List<UserRole> UserRoles { get; set; } 
+
+
         public string FirstName
         {
             get { return _firstName; }
