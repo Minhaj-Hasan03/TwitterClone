@@ -42,6 +42,11 @@ namespace TwitterClone.Domain.Entities
             set { _email = value; }
         }
 
+
+        public string UserName { get; set; }
+        public string Bio { get; set; }
+        public string? AvatarUrl { get; set; }
+
         public string? PhoneNumber
         {
             get { return _phoneNumber; }

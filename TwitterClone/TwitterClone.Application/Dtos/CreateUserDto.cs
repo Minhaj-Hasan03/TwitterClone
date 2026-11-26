@@ -21,9 +21,17 @@ namespace TwitterClone.Application.Dtos
         [EmailAddress]
         public required string Email { get; set; }
 
+
         [Required]
-        
+
         public required string Password {  get; set; }
+
+        [Required]
+        [StringLength(15,MinimumLength =3)]
+        [RegularExpression("^[a-zA-Z0-9_]+", ErrorMessage = "Only letters , numbers and _ are allowed.")]
+        public required string UserName { get; set; }
+
+     
 
     }
 }
