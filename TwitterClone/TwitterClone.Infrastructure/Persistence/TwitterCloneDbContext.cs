@@ -10,6 +10,10 @@ namespace TwitterClone.Infrastructure.Persistence
 {
     public class TwitterCloneDbContext : DbContext
     {
+
+        /*dotnet ef migrations add InitialCreate --project TwitterClone.Infrastructure --startup-project TwitterClone.Api --output-dir Persistence/Migrations*/
+        /* dotnet ef database update --project TwitterClone.Infrastructure --startup-project TwitterClone.Api
+*/
         public TwitterCloneDbContext(DbContextOptions<TwitterCloneDbContext> options):base(options)
         {
 
@@ -27,6 +31,12 @@ namespace TwitterClone.Infrastructure.Persistence
         public DbSet<FriendRequestNotification> FriendRequestNotifications { get; set; }
         public DbSet<MentionNotification> MentionNotifications { get; set; }
         public DbSet<SystemNotification> SystemNotifications { get; set; }
+
+
+        public DbSet<Role> Roles => Set<Role>();
+        public DbSet<Permission> Permissions => Set<Permission>();
+        public DbSet<UserRole> UserRoles => Set<UserRole>();
+        public DbSet<RolePermission> RolePermissions => Set<RolePermission>();
 
 
 

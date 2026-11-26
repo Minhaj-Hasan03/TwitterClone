@@ -26,7 +26,7 @@ builder.Services.AddSwaggerGen();
 
 var jwtSettings = builder.Configuration.GetSection("JwtSettings").Get<JwtSettings>();
 
-builder.Services.AddSingleton<JwtSettings>();
+builder.Services.AddSingleton<JwtSettings>(jwtSettings);
 
 
 
