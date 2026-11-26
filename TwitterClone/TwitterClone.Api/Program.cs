@@ -55,6 +55,17 @@ builder.Services
         };
     });
 
+// Applying Cors 
+const string FrontendCors = "Frontend";
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(FrontendCors, policy =>
+    policy.WithOrigins(builder.Configuration.GetSection("Cors:AllowedOrigins").Get<string[]>()
+                ?? ["https://localhost:3000"])
+    .AllowAnyHeader()
+    .AllowAnyMethod());
+});
 
 
 var app = builder.Build();
@@ -76,10 +87,11 @@ if (app.Configuration.GetValue<bool>("Database:ApplyMigrationsOnStartup"))
 
 
 app.UseHttpsRedirection();
-
+app.UseCors(FrontendCors);
 app.UseAuthorization();
 app.UseAuthentication();
 
 app.MapControllers();
+
 
 app.Run();

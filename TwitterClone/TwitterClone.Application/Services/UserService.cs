@@ -14,14 +14,36 @@ namespace TwitterClone.Application.Services
     {
         private readonly IUserRepository _userRepository;
         private readonly ITweetRepository _tweetRepository;
+        private readonly ITweetService _tweetService;
+        private readonly ILikeRepository _likeRepository;
+        private readonly IBookmarkRepository _bookmarkRepository;
+        private readonly IRetweetRepository _retweetRepository;
+        private readonly IFollowRepository _followRepository;
+        private readonly IMessageRepository _messageRepository;
+        private readonly INotificationRepository _notificationRepository;
         private readonly IPasswordHasher _passwordHasher;
+
 
         public UserService(IUserRepository userRepository, 
             ITweetRepository tweetRepository,
+            ITweetService tweetService,
+            ILikeRepository likeRepository,
+            IBookmarkRepository bookmarkRepository,
+            IRetweetRepository retweetRepository,
+            IFollowRepository followRepository,
+            IMessageRepository messageRepository,
+            INotificationRepository notificationRepository,
             IPasswordHasher passwordHasher  )
         {
             _userRepository = userRepository;
             _tweetRepository = tweetRepository;
+            _tweetService = tweetService;
+            _likeRepository = likeRepository;
+            _bookmarkRepository = bookmarkRepository;
+            _retweetRepository = retweetRepository;
+            _followRepository = followRepository;
+            _messageRepository = messageRepository;
+            _notificationRepository = notificationRepository;
             _passwordHasher = passwordHasher;
         }
 
@@ -42,9 +64,9 @@ namespace TwitterClone.Application.Services
 
             var createdUser = _userRepository.AddUser(new User()
             {
-                FirstName = createUserDto.FirstName,
-                LastName = createUserDto.LastName,
-                Email = createUserDto.Email,
+                FirstName = createUserDto.FirstName.Trim(),
+                LastName = createUserDto.LastName.Trim(),
+                Email = createUserDto.Email.Trim(),
                 PasswordHash = _passwordHasher.Hash(createUserDto.ToDto(),createUserDto.Password),
                 
             });
@@ -62,12 +84,18 @@ namespace TwitterClone.Application.Services
 
             // TODO: A users tweets can't outlive the user
             _tweetRepository.DeleteTweetsByUserId(id);
+            _bookmarkRepository.DeleteBookmarksByUserId(id);
+            _retweetRepository.DeleteRetweetsByUserId(id);
+            _followRepository.DeleteFollowsByUserId(id);
+            _messageRepository.DeleteMessagesByUserId(id);
+            _notificationRepository.DeleteNotificationsByUserId(id);
             return _userRepository.DeleteUser(user);
         }
 
         public UserDto? GetUserById(Guid id)
         {
             var user = _userRepository.GetUserById(id);
+           
             return user?.ToDto();
         }
 
@@ -87,6 +115,10 @@ namespace TwitterClone.Application.Services
 
             user.FirstName = updateUserDto.FirstName.Trim();
             user.LastName = updateUserDto.LastName.Trim();
+            user.UserName = updateUserDto.UserName.Trim();
+            user.Bio = updateUserDto.Bio.Trim();
+            user.AvatarUrl = updateUserDto.AvatarUrl?.Trim();
+            user.MarkAsModified();
 
             _userRepository.UpdateUser(user);
 

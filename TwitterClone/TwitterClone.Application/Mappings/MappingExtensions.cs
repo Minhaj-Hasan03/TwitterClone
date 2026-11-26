@@ -20,7 +20,10 @@ namespace TwitterClone.Application.Mappings
                 Email = user.Email,
                 PhoneNumber = user.PhoneNumber,
                 CreatedAt = user.CreatedAt,
-                //ModifiedAt = user.ModifiedAt
+                ModifiedAt = user.ModifiedAt,           
+                UserName = user.UserName,
+                Bio = user.Bio,
+                AvatarUrl = user.AvatarUrl,
             };
         }
 
@@ -32,6 +35,7 @@ namespace TwitterClone.Application.Mappings
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 Email = user.Email,
+                UserName = user.UserName,
             };
         }
 
